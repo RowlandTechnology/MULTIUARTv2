@@ -49,6 +49,30 @@ exactly like Serial or SoftwareSerial:
 #define MULTIUART_TX_QUEUE_V1       511
 #define MULTIUART_TX_QUEUE_V2       999
 
+// SPI clock divider values used by the original API's initialise().
+// Not every core defines these, so provide the AVR values where missing.
+#ifndef SPI_CLOCK_DIV4
+#define SPI_CLOCK_DIV4   0x00
+#endif
+#ifndef SPI_CLOCK_DIV16
+#define SPI_CLOCK_DIV16  0x01
+#endif
+#ifndef SPI_CLOCK_DIV64
+#define SPI_CLOCK_DIV64  0x02
+#endif
+#ifndef SPI_CLOCK_DIV128
+#define SPI_CLOCK_DIV128 0x03
+#endif
+#ifndef SPI_CLOCK_DIV2
+#define SPI_CLOCK_DIV2   0x04
+#endif
+#ifndef SPI_CLOCK_DIV8
+#define SPI_CLOCK_DIV8   0x05
+#endif
+#ifndef SPI_CLOCK_DIV32
+#define SPI_CLOCK_DIV32  0x06
+#endif
+
 // Inter-byte timing required by the board firmware
 #ifndef MULTIUART_QUERY_DELAY_US
 #define MULTIUART_QUERY_DELAY_US    250

@@ -10,7 +10,7 @@
 #include <MultiUART.h>
 
 MultiUART board(10);                      // chip select pin
-MultiUARTPort &uart0 = board.port(0);
+MultiUARTPort &deviceSerial = board.port(0);
 
 void setup()
 {
@@ -18,15 +18,15 @@ void setup()
   board.begin();
 
   // Sets and stores the baud rate on the board. The board writes this to flash,
-  // so once set you can use uart0.begin() without a rate instead.
-  uart0.begin(9600);
+  // so once set you can use deviceSerial.begin() without a rate instead.
+  deviceSerial.begin(9600);
 }
 
 void loop()
 {
   while (Serial.available())
-    uart0.write(Serial.read());
+    deviceSerial.write(Serial.read());
 
-  while (uart0.available())
-    Serial.write(uart0.read());
+  while (deviceSerial.available())
+    Serial.write(deviceSerial.read());
 }
