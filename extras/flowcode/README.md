@@ -1,6 +1,7 @@
 # MultiUART Flowcode Component
 
-Flowcode component for the MULTIUART / SPI2UART board, for Flowcode 6, 7 and 8.
+Flowcode component for the MULTIUART / SPI2UART board, for Flowcode v6-8. 
+The component is already supplied as part of Flowcode v9-11.
 
 | File | Description |
 |------|-------------|
