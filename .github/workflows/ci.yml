@@ -1,0 +1,45 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/arduino-lint-action@v1
+        with:
+          library-manager: submit
+          compliance: strict
+
+  compile:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - fqbn: arduino:avr:uno
+            platform: arduino:avr
+            source: ""
+          - fqbn: arduino:avr:mega
+            platform: arduino:avr
+            source: ""
+          - fqbn: arduino:samd:mkrzero
+            platform: arduino:samd
+            source: ""
+          - fqbn: arduino:mbed_rp2040:pico
+            platform: arduino:mbed_rp2040
+            source: ""
+          - fqbn: esp32:esp32:esp32
+            platform: esp32:esp32
+            source: https://espressif.github.io/arduino-esp32/package_esp32_index.json
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/compile-sketches@v1
+        with:
+          fqbn: ${{ matrix.fqbn }}
+          platforms: |
+            - name: ${{ matrix.platform }}
+              source-url: ${{ matrix.source }}
+          libraries: |
+            - source-path: ./
